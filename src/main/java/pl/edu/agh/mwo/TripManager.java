@@ -8,6 +8,7 @@ public class TripManager {
 		tripList = new HashMap<String,Trip>();
 	}
 	
+	
 	public void add(Trip trip) throws TripAlreadyExistsException {
 		if (tripList.get(trip.getName()) != null) {
 			throw new TripAlreadyExistsException();
