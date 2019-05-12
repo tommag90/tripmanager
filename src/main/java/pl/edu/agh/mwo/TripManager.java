@@ -26,9 +26,9 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
-	public Set<String> findTrips(String keyword) {
+	public Set<Trip> findTrips(String keyword) {
 		//LinkedList<String> tripsSearchResults = new LinkedList<>();
-		Set<String> tripsSearchResults = new HashSet<>();
+		Set<Trip> tripsSearchResults = new HashSet<>();
 		String keywordLowerCase = keyword.toLowerCase().trim();
 		
 		for (String tripName : tripList.keySet()) {
@@ -37,13 +37,13 @@ public class TripManager {
 					.toLowerCase().trim();
 			
 			if(keywordLowerCase == "") {
-				tripsSearchResults.add(tripName);
+				tripsSearchResults.add(tripList.get(tripName));
 			}
 			if(tripNameLowerCase.contains(keyword)) {
-				tripsSearchResults.add(tripName);
+				tripsSearchResults.add(tripList.get(tripName));
 			}
 			if(tripDescriptionLowerCase.contains(keywordLowerCase)) {
-				tripsSearchResults.add(tripName);
+				tripsSearchResults.add(tripList.get(tripName));
 			}
 			
 			LinkedList<Photo> photos = new LinkedList<>();
@@ -52,7 +52,7 @@ public class TripManager {
 				String photoCommentLowerCase = photo.getComment()
 						.toLowerCase().trim();
 				if(photoCommentLowerCase.contains(keywordLowerCase)) {
-					tripsSearchResults.add(tripName);
+					tripsSearchResults.add(tripList.get(tripName));
 				}
 			}
 		}
