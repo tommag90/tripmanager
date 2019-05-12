@@ -90,6 +90,28 @@ public class TripManagerTest {
 		assertEquals(trip, results.get(0));
 	    assertEquals(1, results.size());
 	}
-
+	
+	@Test
+	public void testTripsNotFound() throws TripAlreadyExistsException {
+		tripManager.add(trip);
+		Trip trip1 = new Trip("second", "trip");
+		tripManager.add(trip1);
+		List<Trip> results = tripManager.findTrips("something other");
+	    assertEquals(0, results.size());
+	}
+	
+	@Test
+	public void testFindTripsMultiple() throws TripAlreadyExistsException {
+		tripManager.add(trip);
+		Trip trip1 = new Trip("second", "nazwa");
+		tripManager.add(trip1);
+		Trip trip2 = new Trip("third", "trip");
+		Photo photo = new Photo("nazwa");
+		trip2.addPhoto(photo);
+		tripManager.add(trip2);
+		
+		List<Trip> results = tripManager.findTrips("nazwa");
+	    assertEquals(3, results.size());
+	}
 
 }
