@@ -11,6 +11,7 @@ public class Trip {
 	public Trip(String name, String description) {
 		this.name = name;
 		this.description = description;
+		photos = new LinkedList<>();
 	}
 
 	public String getName() {
