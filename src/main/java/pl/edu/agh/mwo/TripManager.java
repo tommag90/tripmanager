@@ -26,9 +26,8 @@ public class TripManager {
 		tripList.remove(name);
 	}
 	
-	public Set<Trip> findTrips(String keyword) {
-		//LinkedList<String> tripsSearchResults = new LinkedList<>();
-		Set<Trip> tripsSearchResults = new HashSet<>();
+	public List<Trip> findTrips(String keyword) {
+		List<Trip> tripsSearchResults = new LinkedList<>();
 		String keywordLowerCase = keyword.toLowerCase().trim();
 		
 		for (String tripName : tripList.keySet()) {
