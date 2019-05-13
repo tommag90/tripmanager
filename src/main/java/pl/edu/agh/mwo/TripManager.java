@@ -35,13 +35,15 @@ public class TripManager {
 			String tripDescriptionLowerCase = tripList.get(tripName).getDescription()
 					.toLowerCase().trim();
 			
-			if(keywordLowerCase == "") {
+			if(keywordLowerCase == "" && !tripsSearchResults.contains(tripList.get(tripName))) {
 				tripsSearchResults.add(tripList.get(tripName));
 			}
-			if(tripNameLowerCase.contains(keyword)) {
+			if(tripNameLowerCase.contains(keywordLowerCase) &&
+					!tripsSearchResults.contains(tripList.get(tripName))) {
 				tripsSearchResults.add(tripList.get(tripName));
 			}
-			if(tripDescriptionLowerCase.contains(keywordLowerCase)) {
+			if(tripDescriptionLowerCase.contains(keywordLowerCase) &&
+					!tripsSearchResults.contains(tripList.get(tripName))) {
 				tripsSearchResults.add(tripList.get(tripName));
 			}
 			
@@ -50,7 +52,8 @@ public class TripManager {
 			for (Photo photo : photos) {
 				String photoCommentLowerCase = photo.getComment()
 						.toLowerCase().trim();
-				if(photoCommentLowerCase.contains(keywordLowerCase)) {
+				if(photoCommentLowerCase.contains(keywordLowerCase) &&
+						!tripsSearchResults.contains(tripList.get(tripName))) {
 					tripsSearchResults.add(tripList.get(tripName));
 				}
 			}
@@ -58,4 +61,24 @@ public class TripManager {
 		return tripsSearchResults;
 	}
 	
+	public List<Trip> findTripsByMaxPrice(double price) {
+		List<Trip> tripsSearchResults = new LinkedList<>();
+		for (String tripName : tripList.keySet()) {
+			if(tripList.get(tripName).getPrice() <= price) {
+				tripsSearchResults.add(tripList.get(tripName));
+			}
+		}
+		return tripsSearchResults;
+	}
+	
+	public List<Trip> findTripsByMaxPriceAndKeyword(String keyword, double price) {
+		List<Trip> foundByKeyword = new LinkedList<>();
+		foundByKeyword = findTrips(keyword);
+		List<Trip> foundByPrice = new LinkedList<>();
+		foundByPrice = findTripsByMaxPrice(price);
+		foundByKeyword.retainAll(foundByPrice);
+		
+		
+		return foundByKeyword;
+	}
 }
