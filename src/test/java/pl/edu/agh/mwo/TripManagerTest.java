@@ -77,6 +77,7 @@ public class TripManagerTest {
 		Photo photo1 = new Photo("second photo");
 		Photo photo2 = new Photo("third photo");
 		Photo photo3 = new Photo("fourth photo");
+		photo3.setComment("fifth");
 		
 		tripManager.add(trip);
 		Trip trip1 = new Trip("second", "trip", 1500);
@@ -129,6 +130,7 @@ public class TripManagerTest {
 	public void testFindByPriceBetween() throws TripAlreadyExistsException {
 		tripManager.add(trip);
 		Trip trip1 = new Trip("second", "trip", 1500);
+		trip.setPrice(2200);
 		tripManager.add(trip1);
 		
 		List<Trip> results = tripManager.findTripsByMaxPrice(1800);
