@@ -197,5 +197,4 @@ public class TripManagerTest {
 		List<Trip> results = tripManager.findTripsByMaxPriceAndKeyword("fifth", 9000);
 	    assertEquals(0, results.size());
 	}
-
 }
