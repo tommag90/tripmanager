@@ -35,7 +35,7 @@ public class TripManager {
 			String tripDescriptionLowerCase = tripList.get(tripName).getDescription()
 					.toLowerCase().trim();
 			
-			if(keywordLowerCase == "" && !tripsSearchResults.contains(tripList.get(tripName))) {
+			if(keywordLowerCase == "") {
 				tripsSearchResults.add(tripList.get(tripName));
 			}
 			if(tripNameLowerCase.contains(keywordLowerCase) &&
