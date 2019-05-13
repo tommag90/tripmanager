@@ -63,11 +63,13 @@ public class TripManagerTest {
 	
 	@Test
 	public void testFindTripsMatchingDesc() throws TripAlreadyExistsException {
+		trip.setName("first");
+		trip.setDescription("trip");
 		tripManager.add(trip);
-		Trip trip1 = new Trip("second", "trip", 1500);
+		Trip trip1 = new Trip("second", "journey", 1500);
 		tripManager.add(trip1);
 		List<Trip> results = tripManager.findTrips("trip");
-		assertEquals(trip1, results.get(0));
+		assertEquals(trip, results.get(0));
 	    assertEquals(1, results.size());
 	}
 	
